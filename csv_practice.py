@@ -79,3 +79,23 @@ with open(SALES_FILE, "r") as f:
         total = price * quantity
         dict_total += total
         print(f"{row['product']}: {quantity} units x ${price:.2f} = ${total:.2f}")
+
+print("--- Exercise 7 ---")
+
+summary = {}
+
+with open(SALES_FILE, "r") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        product = row["product"]
+        total = float(row["price"]) * int(row["quantity"])
+        summary[product] = summary.get(product, 0) + total
+
+print("--- Exercise 8 ---")
+
+timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+with open(LOG_FILE, "a") as f:
+    f.write(f"{timestamp} total revenue: ${total_revenue:.2f}\n")
+
+entries = 0
+with open(LOG_FILE)
